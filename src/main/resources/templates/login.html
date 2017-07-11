@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="thymeleaf.org ">
+<head>
+    <th:block th:replace="base :: head"></th:block>
+</head>
+<body>
+   <th:block th:replace="base :: nav"></th:block>
+   <div class="section section-signup" style="background-image: url('https://static.pexels.com/photos/227722/pexels-photo-227722.jpeg'); background-size: cover; background-position: top center; min-height: 700px;">
+       <div class="container">
+           <div class="row">
+               <div class="card card-signup" data-background-color="orange">
+                   <form class="form" method="" action="">
+                       <div class="header header-primary text-center">
+                           <h4 class="title title-up"> The Gram Login</h4>
+                            <p>Created by Daylin Henry</p>
+                       </div>
+                       <div class="content">
+                           <div class="input-group form-group-no-border">
+                                        <span class="input-group-addon">
+                                            <i class="now-ui-icons users_circle-08"></i>
+                                        </span>
+                               <input type="text" class="form-control" placeholder="First Name..."/>
+                           </div>
+                           <div class="input-group form-group-no-border">
+                                        <span class="input-group-addon">
+                                            <i class="now-ui-icons ui-1_email-85"></i>
+                                        </span>
+                               <input type="text" class="form-control" placeholder="Email..."/>
+                           </div>
+                           <div class="input-group form-group-no-border">
+                                        <span class="input-group-addon">
+                                            <i class="now-ui-icons ui-1_lock-circle-open"></i>
+                                        </span>
+                               <input type="password" placeholder="Password..." class="form-control" />
+                           </div>
+                           <!-- If you want to add a checkbox to this form, uncomment this code -->
+                           <!-- <div class="checkbox">
+                             <input id="checkboxSignup" type="checkbox">
+                                 <label for="checkboxSignup">
+                                 Unchecked
+                                 </label>
+                               </div> -->
+                       </div>
+                       <div class="footer text-center">
+                           <a href="#pablo" class="btn btn-neutral btn-round btn-lg">Get Started</a>
+                       </div>
+                   </form>
+               </div>
+           </div>
+           <div class="col text-center">
+               <a href="examples/login-page.html" class="btn btn-simple btn-round btn-white btn-lg" target="_blank">View Login Page</a>
+           </div>
+       </div>
+   </div>
+
+
+</body>
+</html>
