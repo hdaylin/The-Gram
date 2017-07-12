@@ -3,6 +3,8 @@ package com.example.demo.Models;
 /**
  * Created by daylinhenry on 7/11/17.
  */
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.data.annotation.*;
@@ -11,10 +13,12 @@ import org.springframework.data.annotation.*;
 import javax.persistence.*;
 import javax.persistence.Id;
 import java.util.Collection;
+import java.util.Set;
 
 @Entity
 @Table(name = "userData")
 public class User {
+    @LazyCollection(LazyCollectionOption.FALSE)
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
@@ -40,6 +44,30 @@ public class User {
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(joinColumns = @JoinColumn(name = "user_id"),inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Collection<Role> roles;
+
+    @OneToMany(fetch = FetchType.EAGER)
+    private Set<Post> posts;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(joinColumns = @JoinColumn(name="user_id"), inverseJoinColumns = @JoinColumn(name="follow_id"))
+    private Set<Follow> follows;
+
+    public Set<Follow> getFollows() {
+        return follows;
+    }
+
+    public void setFollows(Set<Follow> follows) {
+        this.follows = follows;
+    }
+
+
+    public Set<Post> getPosts() {
+        return posts;
+    }
+
+    public void setPosts(Set<Post> posts) {
+        this.posts = posts;
+    }
 
     public User(String email, String password, String firstName, String lastName, boolean enabled, String username) {
         this.email = email;

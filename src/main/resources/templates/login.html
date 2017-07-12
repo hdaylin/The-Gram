@@ -15,10 +15,10 @@
                        </div>
 
                        <br />
-                       <div th:if="${param.error}">
+                       <div th:if="${param.error}" class="container">
                           <p>Invalid username and password.</p>
                        </div>
-                       <div th:if="${param.logout}">
+                       <div th:if="${param.logout}" class="container">
                            <p>You have been logged out.</p>
                        </div>
                        <div class="header header-primary text-center">

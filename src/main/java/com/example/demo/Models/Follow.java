@@ -1,21 +1,28 @@
 package com.example.demo.Models;
 
-import javax.persistence.CascadeType;
-import javax.persistence.JoinTable;
-import javax.persistence.OneToMany;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
+import javax.persistence.*;
+import java.util.Collection;
 import java.util.Set;
 
 /**
  * Created by daylinhenry on 7/11/17.
  */
+@Entity
 public class Follow {
 
+    @LazyCollection(LazyCollectionOption.FALSE)
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     private int follower;
     private int following;
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinTable
-    private Set<User> users;
+
+    @ManyToMany(mappedBy = "follows")
+    private Collection<User> users;
+
 
     public int getId() {
         return id;
@@ -41,11 +48,11 @@ public class Follow {
         this.following = following;
     }
 
-    public Set<User> getUsers() {
+    public Collection<User> getUsers() {
         return users;
     }
 
-    public void setUsers(Set<User> users) {
+    public void setUsers(Collection<User> users) {
         this.users = users;
     }
 }

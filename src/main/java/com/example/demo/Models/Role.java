@@ -1,4 +1,7 @@
 package com.example.demo.Models;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.Set;
@@ -6,6 +9,7 @@ import java.util.Set;
 @Entity
 public class Role {
 
+    @LazyCollection(LazyCollectionOption.FALSE)
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
@@ -13,7 +17,7 @@ public class Role {
     @Column(unique=true)
     private String role;
 
-    @ManyToMany(mappedBy = "roles",fetch = FetchType.LAZY)
+    @ManyToMany(mappedBy = "roles")
     private Collection<User> users;
 
     public Role(String role) {

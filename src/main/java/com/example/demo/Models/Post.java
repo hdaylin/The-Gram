@@ -1,16 +1,20 @@
 package com.example.demo.Models;
-
+import com.cloudinary.StoredFile;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 import org.springframework.stereotype.Controller;
-
 import javax.persistence.*;
+import java.util.Collection;
 import java.util.Set;
 
 /**
  * Created by daylinhenry on 7/11/17.
  */
+
 @Entity
 public class Post {
 
+    @LazyCollection(LazyCollectionOption.FALSE)
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
@@ -18,9 +22,16 @@ public class Post {
     private String image;
     private String description;
 
-    @OneToMany (cascade = CascadeType.ALL)
-    @JoinTable
-    private Set<User> users;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", nullable = false)
+    private Collection<User> users;
+
+
+    public StoredFile getUpload() {
+        StoredFile file = new StoredFile();
+        file.setPreloadedFile(image);
+        return file;
+    }
 
     public int getId() {
         return id;
@@ -54,11 +65,14 @@ public class Post {
         this.description = description;
     }
 
-    public Set<User> getUsers() {
+    public Collection<User> getUsers() {
         return users;
     }
 
-    public void setUsers(Set<User> users) {
+    public void setUsers(Collection<User> users) {
         this.users = users;
     }
+
+
+
 }
