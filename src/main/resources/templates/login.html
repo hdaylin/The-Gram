@@ -9,7 +9,18 @@
        <div class="container">
            <div class="row">
                <div class="card card-signup" data-background-color="orange">
-                   <form class="form" method="" action="">
+                   <form class="form" th:action="@{/login}" method="post">
+                       <div class="alert alert-success" th:if="${message !=null}" role="alert">
+                           <p th:text="${message}"/>
+                       </div>
+
+                       <br />
+                       <div th:if="${param.error}">
+                          <p>Invalid username and password.</p>
+                       </div>
+                       <div th:if="${param.logout}">
+                           <p>You have been logged out.</p>
+                       </div>
                        <div class="header header-primary text-center">
                            <h4 class="title title-up"> The Gram Login</h4>
                             <p>Created by Daylin Henry</p>
@@ -19,19 +30,14 @@
                                         <span class="input-group-addon">
                                             <i class="now-ui-icons users_circle-08"></i>
                                         </span>
-                               <input type="text" class="form-control" placeholder="First Name..."/>
+                               <input type="text" id="username" name="username" class="form-control" placeholder="Username"/>
                            </div>
-                           <div class="input-group form-group-no-border">
-                                        <span class="input-group-addon">
-                                            <i class="now-ui-icons ui-1_email-85"></i>
-                                        </span>
-                               <input type="text" class="form-control" placeholder="Email..."/>
-                           </div>
+
                            <div class="input-group form-group-no-border">
                                         <span class="input-group-addon">
                                             <i class="now-ui-icons ui-1_lock-circle-open"></i>
                                         </span>
-                               <input type="password" placeholder="Password..." class="form-control" />
+                               <input type="password" id="password" name="password" placeholder="password" class="form-control" />
                            </div>
                            <!-- If you want to add a checkbox to this form, uncomment this code -->
                            <!-- <div class="checkbox">
@@ -42,17 +48,14 @@
                                </div> -->
                        </div>
                        <div class="footer text-center">
-                           <a href="#pablo" class="btn btn-neutral btn-round btn-lg">Get Started</a>
+                           <button  type="submit" class="btn btn-neutral btn-round btn-lg">Sign In</button>
                        </div>
                    </form>
                </div>
            </div>
-           <div class="col text-center">
-               <a href="examples/login-page.html" class="btn btn-simple btn-round btn-white btn-lg" target="_blank">View Login Page</a>
-           </div>
+
        </div>
    </div>
-
 
 </body>
 </html>
