@@ -5,6 +5,9 @@ package com.example.demo.services;
 /**
  * Created by daylinhenry on 7/5/17.
  */
+import com.example.demo.Models.Role;
+import com.example.demo.Models.User;
+import com.example.demo.Repositories.UserRepository;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -17,6 +20,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Transactional
+@Service
 public class SSUserDetailsService implements UserDetailsService {
     private UserRepository userRepository;
     public SSUserDetailsService(UserRepository userRepository){

@@ -1,7 +1,8 @@
 package com.example.demo.configs;
 
-import byAJ.repositories.RoleRepository;
-import byAJ.repositories.UserRepository;
+
+import com.example.demo.Repositories.RoleRepository;
+import com.example.demo.Repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.security.crypto.password.PasswordEncoder;

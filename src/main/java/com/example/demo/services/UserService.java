@@ -1,8 +1,9 @@
 package com.example.demo.services;
 
-import byAJ.models.User;
-import byAJ.repositories.RoleRepository;
-import byAJ.repositories.UserRepository;
+
+import com.example.demo.Models.User;
+import com.example.demo.Repositories.RoleRepository;
+import com.example.demo.Repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
