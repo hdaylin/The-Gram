@@ -1,6 +1,9 @@
 package com.example.demo.Models;
 
+import javafx.geometry.Pos;
+
 import javax.persistence.*;
+import java.util.Collection;
 import java.util.Set;
 
 /**
@@ -14,9 +17,30 @@ public class Comments {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     private String message;
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinTable
-    private Set<Post> posts;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "post_id")
+    private Post post;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "user_id")
+    private User user;
+
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Post getPost() {
+        return post;
+    }
+
+    public void setPost(Post post) {
+        this.post = post;
+    }
 
     public int getId() {
         return id;
@@ -34,13 +58,6 @@ public class Comments {
         this.message = message;
     }
 
-    public Set<Post> getPosts() {
-        return posts;
-    }
-
-    public void setPosts(Set<Post> posts) {
-        this.posts = posts;
-    }
 
 
 }

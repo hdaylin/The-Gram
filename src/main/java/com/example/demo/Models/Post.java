@@ -18,14 +18,26 @@ public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
-    private int like;
+
+
+    private int likes;
     private String image;
     private String description;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "user_id")
+    private User user;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id", nullable = false)
-    private Collection<User> users;
+    @OneToMany(mappedBy = "post", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private Set<Comments>comments;
 
+
+    public Set<Comments> getComments() {
+        return comments;
+    }
+
+    public void setComments(Set<Comments> comments) {
+        this.comments = comments;
+    }
 
     public StoredFile getUpload() {
         StoredFile file = new StoredFile();
@@ -41,12 +53,12 @@ public class Post {
         this.id = id;
     }
 
-    public int getLike() {
-        return like;
+    public int getLikes() {
+        return likes;
     }
 
-    public void setLike(int like) {
-        this.like = like;
+    public void setLikes(int likes) {
+        this.likes = likes;
     }
 
     public String getImage() {
@@ -65,14 +77,13 @@ public class Post {
         this.description = description;
     }
 
-    public Collection<User> getUsers() {
-        return users;
+    public User getUser() {
+        return user;
     }
 
-    public void setUsers(Collection<User> users) {
-        this.users = users;
+    public void setUser(User user) {
+        this.user = user;
     }
-
 
 
 }

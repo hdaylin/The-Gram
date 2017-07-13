@@ -8,10 +8,12 @@
 
 <form method="POST" action="/upload" enctype="multipart/form-data" th:object="${post}">
     <input type="file" name="file" /><br/><br/>
+    <input type="text" th:field="*{description}"  class="form-control" id="company" placeholder="company"/>
     <input type="submit" value="Submit" />
 </form>
 <div th:if="${message}">
     <h2 th:text="${message}"/><br/><br/>
+    <p th:text="${description}"/>
 </div>
 <div th:if="${imageurl} != null">
     <img th:src="${imageurl}" />
